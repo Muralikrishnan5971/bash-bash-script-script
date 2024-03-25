@@ -1,0 +1,38 @@
+#! /bin/bash
+
+TEST_DIR="$HOME/bashgator"
+
+mkdir -p "$TEST_DIR"
+
+GIT_VERSION=$(git -v | awk '{print $3}')
+#GIT_VERSION=2.44
+echo "My git version: $GIT_VERSION" > "$TEST_DIR/version"
+
+JAVA_VERSION=$(java --version)
+
+echo "My java version: $JAVA_VERSION" >> "$TEST_DIR/version"
+
+NODE_VERSION=$(node --version)
+
+echo "My node version: $NODE_VERSION" >> "$TEST_DIR/version"
+
+
+GTI_LATEST_VERSION=$(curl -s https://git-scm.com/download/win | grep -n  git | awk 'NR==2 {print $4}' |grep -oE 'v\d+\.\d+\.\d+' | tr -d v)
+
+NODE_LATEST_VERSION
+
+echo "Latest git version: $GTI_LATEST_VERSION" >> "$TEST_DIR/version"
+
+if [ "$GIT_VERSION" == "$GTI_LATEST_VERSION" ]; then
+    echo "Latest git version is installed already"
+else
+    echo "Latest git version in NOT installed"
+    brew install git
+fi
+
+
+#touch "$TEST_DIR/git-version"
+
+#cat $GIT_VERSION > TEST_DIR/bashgator/git_version
+
+

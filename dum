@@ -1,0 +1,17 @@
+#! /usr/bin/python3
+
+
+import shutil
+
+# Your multi-line string
+multiline_string = """
+This is line 1.
+This is line 2.
+This is line 3.
+"""
+
+# Get the width of the terminal
+terminal_width = shutil.get_terminal_size().columns
+print(terminal_width)
+# Print the multi-line string centered
+print(multiline_string.center(terminal_width))

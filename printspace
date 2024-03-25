@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Path to your ASCII art file
+art_file="$1"
+
+# Get the terminal width
+term_width=$(tput cols)
+
+# Read the ASCII art into a variable
+art_text=$(cat "$art_file")
+
+# Calculate the padding required to center the art
+padding=$(( (term_width - ${#art_text}) / 2 ))
+
+# Print the art with padding
+printf "%${padding}s%s\n" "" "$art_text"
+

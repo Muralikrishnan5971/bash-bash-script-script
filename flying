@@ -1,0 +1,45 @@
+#!/bin/bash
+
+w=~/mkbin/w
+we=~/mkbin/we
+wel=~/mkbin/wel
+welc=~/mkbin/welc
+welco=~/mkbin/welco
+welcom=~/mkbin/welcom
+welcome=~/mkbin/welcome
+
+w=$(cat "$w")
+we=$(cat "$we")
+wel=$(cat "$wel")
+welc=$(cat "$welc")
+welco=$(cat "$welco")
+welcom=$(cat "$welcom")
+welcome=$(cat "$welcome")
+
+#echo $w
+#echo $we
+#echo $wel
+#echo $welc
+#echo $welco
+#echo $welcom
+#echo $welcome
+
+welcome=("$w" "$we" "$wel" "$welc" "$welco" "$welcom" "$welcome")
+
+#for l in ${welcome[@]}; do
+#	echo "$l"
+#	sleep 0.10
+#	clear
+#done
+
+space="space.txt"
+s=$(cat "$space" | lolcat)
+echo "$s"
+#cols=$(tput cols)
+#cols_offset=$(( (cols - $(echo "$space" | head -n 1 | wc -c)) / 2 ))
+#cols_offset=$(( ($cols - $(echo "$space" | awk '{print length; exit}') ) / 2 ))
+#printf "%$(( ( $cols - ${#space}) / 2 ))s\n" "$space"
+#tput cuf $cols_offset
+#echo "$space"
+
+

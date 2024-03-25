@@ -1,0 +1,13 @@
+bunzip2
+bzip2
+gunzip
+gzip
+unzip
+zip
+zipcloak
+zipgrep
+zipinfo
+zipnote
+zipsplit
+zzzap
+ffffade

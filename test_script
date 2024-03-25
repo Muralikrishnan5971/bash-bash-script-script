@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "This is a bash script"
+
+d="dustfile.txt"
+a=$(cat $d)
+
+cols=$(tput cols)
+cols_offset=$(( ($cols - $(echo "$a" | head -n 1 | wc -c)) / 2 ))
+tput cuf $cols_offset
+echo "$a"
+
+#cols_offset= $((cols / 2))
+
+
+#echo $a
+#printf "%*s\n" $cols_offset $a
+
