@@ -12,14 +12,12 @@ JAVA_VERSION=$(java --version)
 
 echo "My java version: $JAVA_VERSION" >> "$TEST_DIR/version"
 
-NODE_VERSION=$(node --version)
+NODE_VERSION=$(node --version | tr -d v)
 
 echo "My node version: $NODE_VERSION" >> "$TEST_DIR/version"
 
 
 GTI_LATEST_VERSION=$(curl -s https://git-scm.com/download/win | grep -n  git | awk 'NR==2 {print $4}' |grep -oE 'v\d+\.\d+\.\d+' | tr -d v)
-
-NODE_LATEST_VERSION
 
 echo "Latest git version: $GTI_LATEST_VERSION" >> "$TEST_DIR/version"
 
@@ -30,6 +28,16 @@ else
     brew install git
 fi
 
+NODE_LATEST_VERSION=$(curl -s https://nodejs.org/en | grep -oE 'v\d+\.\d+\.\d+' | head -n 1 | tr -d v)
+
+echo "Latest node version: $NODE_LATEST_VERSION" >> "$TEST_DIR/version"
+
+if [ "$NODE_VERSION" == "$NODE_LATEST_VERSION" ]; then
+    echo "Latest node version is installed already"
+else
+    echo "Latest node version in NOT installed"
+    #brew install node
+fi
 
 #touch "$TEST_DIR/git-version"
 

@@ -1,0 +1,9 @@
+#! /bin/bash
+
+if [[ "$1" == "--count" || "$1" == "-c" ]]; then
+    COUNT=$(find ./tests -name "*.py" | grep -v "__init__" | xargs grep -H "def test" | wc -l)
+    echo "Total test case count: $COUNT"
+fi
+
+
+
