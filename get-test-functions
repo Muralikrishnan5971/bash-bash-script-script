@@ -3,7 +3,12 @@
 if [[ "$1" == "--count" || "$1" == "-c" ]]; then
     COUNT=$(find ./tests -name "*.py" | grep -v "__init__" | xargs grep -H "def test" | wc -l)
     echo "Total test case count: $COUNT"
+    exit 0
 fi
 
-
+FILE_NAME=$1
+TESTS=$(find ./tests -name "*.py" | grep -v "__init__" | xargs grep -H "def test" | grep "$FILE_NAME")
+TEST_CASE_COUNT=$(find ./tests -name "*.py" | grep -v "__init__" | xargs grep -H "def test" | grep "$FILE_NAME" | wc -l)
+echo "$TESTS"
+echo "Total test case in $1 : $TEST_CASE_COUNT"
 
