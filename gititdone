@@ -1,0 +1,26 @@
+#! /usr/bin/bash
+
+GITPATH=$(git rev-parse --git-dir 2>/dev/null)
+#echo $GITPATH
+
+if [ -z "$GITPATH" ]; then
+    echo "current directory is not a GIT repository!!!!"
+    exit 1
+else
+    echo "This is a GIT repository!!!!"
+fi
+
+STATUS=$(git status)
+echo "******"
+echo "$STATUS"
+echo "******"
+
+if [[ "$STATUS" == *"nothing to commit"* ]]; then
+    echo "Nothing to stage, Working tree is clean!!!"
+elif [[ "$STATUS" == *"Changes not staged for commit:"* ]]; then
+    echo "Changes present that needs to be Staged!!!"
+else
+    echo "no matching sentence found"
+fi
+
+
