@@ -22,5 +22,30 @@ elif [[ "$STATUS" == *"Changes not staged for commit:"* ]]; then
 else
     echo "no matching sentence found"
 fi
+# get hash id of the latest commit present in our local
 
+LOCAL_HEAD=$(git rev-parse HEAD)
+LOCAL_HEAD=${LOCAL_HEAD:0:7}
+echo "$LOCAL_HEAD"
+
+git fetch
+FETCH_STATUS=$?
+
+if [ $FETCH_STATUS -eq 0 ]; then
+    echo "git fetch command executed successfully!!!!"
+else
+    echo "**** error while executing fetch command ****"
+fi
+
+REMOTE_HEAD=$(< .git/FETCH_HEAD)
+REMOTE_HEAD=${REMOTE_HEAD:0:7}
+echo "$REMOTE_HEAD"
+
+if [ "$LOCAL_HEAD" = "$REMOTE_HEAD" ]; then
+    echo "NO NEW CHANGES PRESENT IN REMOTE REPOSITORY"
+else
+    echo "NEW CHANGES PRESENT IN REMOTE REPOSOTORY"
+    git pull
+    echo "GIT PULL EXECUTED"
+fi
 
